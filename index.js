@@ -5,7 +5,8 @@ const {
   Component,
   Text,
   View,
-  PropTypes
+  PropTypes,
+  Platform
 } = React;
 import NavbarButton from './NavbarButton';
 import styles from './styles';
@@ -30,14 +31,18 @@ const StatusBarShape = {
 };
 
 function customizeStatusBar(data) {
-  if (data.style) {
+  console.log("Platform : " + Platform.OS);
+  if (data.style && Platform.OS === "ios")
+    console.log("setStyle : " + data.style);{
     StatusBarIOS.setStyle(data.style, true);
   }
   const animation = data.hidden ?
     (data.hideAnimation || NavigationBar.defaultProps.statusBar.hideAnimation) :
     (data.showAnimation || NavigationBar.defaultProps.statusBar.showAnimation);
 
-  StatusBarIOS.setHidden(data.hidden, animation);
+    if(Platform.OS === "ios"){
+      StatusBarIOS.setHidden(data.hidden, animation);
+    }
 }
 
 class NavigationBar extends Component {
