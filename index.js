@@ -32,8 +32,7 @@ const StatusBarShape = {
 
 function customizeStatusBar(data) {
   console.log("Platform : " + Platform.OS);
-  if (data.style && Platform.OS === "ios")
-    console.log("setStyle : " + data.style);{
+  if (data.style && Platform.OS === "ios"){
     StatusBarIOS.setStyle(data.style, true);
   }
   const animation = data.hidden ?
